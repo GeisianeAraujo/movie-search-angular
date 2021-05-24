@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { forkJoin, Observable, of } from 'rxjs';
 import {
   debounceTime,
+  distinctUntilChanged,
   filter,
   finalize,
   map,
@@ -39,7 +40,7 @@ export class HomePage extends AutoUnsubscribe implements OnInit {
     this.userImage = 'assets/images/user.svg';
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initForm();
     this.movieSearch();
     this.comicList();
@@ -57,7 +58,8 @@ export class HomePage extends AutoUnsubscribe implements OnInit {
 
   private movieSearch() {
     this.filteredOptions$ = this.searchForm.get('search')!.valueChanges.pipe(
-      debounceTime(1200),
+      distinctUntilChanged(),
+      debounceTime(1500),
       filter((result) => {
         if (result.length === 0) {
           this.onReset();
@@ -119,8 +121,6 @@ export class HomePage extends AutoUnsubscribe implements OnInit {
 
   private onReset() {
     this.isLoading = false;
-    this.searchForm.reset();
     this.isSeeking = false;
-    this.filteredOptions$ = of([]);
   }
 }
