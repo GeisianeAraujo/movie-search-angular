@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Lato", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #1f1d2c;
+  color: #fffeff;
+}
+
+.container {
+  display: block;
+  height: 100%;
+  padding: 0 15px;
+}

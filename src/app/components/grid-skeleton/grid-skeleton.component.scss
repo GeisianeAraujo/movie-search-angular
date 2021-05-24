@@ -1,0 +1,17 @@
+$skeleton: "skeleton";
+
+.#{$skeleton} {
+  justify-content: center !important;
+  padding-top: 50px;
+  position: relative;
+
+  &__content {
+    position: relative;
+    margin: 0 10px;
+
+    &-title {
+      padding-top: 15px;
+      padding-bottom: 40px;
+    }
+  }
+}

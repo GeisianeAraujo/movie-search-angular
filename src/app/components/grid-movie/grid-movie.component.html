@@ -1,0 +1,29 @@
+<div class="movie" fxLayout="row wrap" fxLayoutAlign="start stretch">
+  <div
+    class="movie__content"
+    fxFlex="18"
+    fxFlex.md="22"
+    fxFlex.sm="45"
+    fxFlex.xs="100"
+    fxLayout="column"
+    *ngFor="let movie of moviesList; let index = index"
+  >
+    <img
+      mat-card-image
+      class="movie__content-image"
+      [src]="baseUrlImage + movie.poster_path"
+      [alt]="'Imagem ' + movie.title"
+      style="z-index: 2"
+      (mouseover)="indexHover = index"
+      (mouseout)="indexHover = -1"
+    />
+    <img
+      mat-card-image
+      class="movie__content-blur"
+      *ngIf="indexHover === index"
+      [src]="baseUrlImage + movie.poster_path"
+    />
+
+    <h4>{{ movie.title }}</h4>
+  </div>
+</div>

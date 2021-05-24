@@ -1,0 +1,69 @@
+<section class="container">
+  <div class="header" fxLayout="row">
+    <div
+      class="header__logo"
+      fxFlex="25"
+      fxFlex.md="25"
+      fxFlex.sm="25"
+      fxFlex.xs="25"
+    >
+      CINEMA
+    </div>
+    <div
+      class="header__search"
+      fxFlex="60"
+      fxFlex.md="50"
+      fxFlex.sm="50"
+      fxFlex.xs="50"
+    >
+      <form class="search" [formGroup]="searchForm">
+        <input
+          type="text"
+          class="search__field"
+          placeholder="Pesquisar filme..."
+          formControlName="search"
+        />
+      </form>
+    </div>
+    <div
+      class="header__user"
+      fxFlex="15"
+      fxFlex.md="25"
+      fxFlex.sm="25"
+      fxFlex.xs="25"
+    >
+      <div class="header__user-circle">
+        <img [src]="userImage" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="search-results" *ngIf="filteredOptions$ | async as movieSearch">
+    <ng-container *ngIf="isSeeking">
+      <ng-container *ngIf="movieSearch.length > 0; else elseTitle">
+        <h2 class="title">Resultado da busca</h2>
+        <div class="movie" fxLayout="row wrap" fxLayoutAlign="start stretch">
+          <ng-container *ngIf="!isLoading; else elseTemplate">
+            <app-grid-movie [moviesList]="movieSearch"></app-grid-movie>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <app-grid-skeleton></app-grid-skeleton>
+          </ng-template>
+        </div>
+      </ng-container>
+      <ng-template #elseTitle>
+        <h3 class="search-results__not-found">Nenhum resultado encontrado.</h3>
+      </ng-template>
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf="!isSeeking">
+    <h2 class="title">Filmes Populares</h2>
+    <ng-container *ngIf="!isLoading; else elseTemplate">
+      <app-grid-movie [moviesList]="movies"></app-grid-movie>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <app-grid-skeleton></app-grid-skeleton>
+    </ng-template>
+  </ng-container>
+</section>

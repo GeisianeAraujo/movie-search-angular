@@ -1,0 +1,36 @@
+<div class="skeleton" fxLayout="row wrap" fxLayoutAlign="start stretch">
+  <div
+    class="skeleton__content"
+    fxFlex="18"
+    fxFlex.md="22"
+    fxFlex.sm="45"
+    fxFlex.xs="100"
+    fxLayout="column"
+    *ngFor="let item of items"
+  >
+    <ngx-skeleton-loader
+      mat-card-image
+      appearance="circle"
+      [theme]="{
+        width: '100%',
+        'min-height': '400px',
+        'background-color': 'rgb(140 140 177 / 85%)',
+        opacity: '0.2',
+        'border-radius': '10px'
+      }"
+    >
+    </ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      class="skeleton__content-title"
+      appearance="circle"
+      [theme]="{
+        width: '50%',
+        height: '100%',
+        'background-color': 'rgb(140 140 177 / 85%)',
+        opacity: '0.2',
+        'border-radius': '10px'
+      }"
+    >
+    </ngx-skeleton-loader>
+  </div>
+</div>
