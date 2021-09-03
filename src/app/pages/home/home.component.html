@@ -43,7 +43,9 @@
       <ng-container *ngIf="movieSearch.length > 0; else elseTitle">
         <h2 class="title">Resultado da busca</h2>
         <div class="movie" fxLayout="row wrap" fxLayoutAlign="start stretch">
-          <ng-container *ngIf="!isLoading; else elseTemplate">
+          <ng-container
+            *ngIf="!isLoading && movieSearch.length; else elseTemplate"
+          >
             <app-grid-movie [moviesList]="movieSearch"></app-grid-movie>
           </ng-container>
           <ng-template #elseTemplate>
@@ -59,7 +61,7 @@
 
   <ng-container *ngIf="!isSeeking">
     <h2 class="title">Filmes Populares</h2>
-    <ng-container *ngIf="!isLoading; else elseTemplate">
+    <ng-container *ngIf="!isLoading && movies.length; else elseTemplate">
       <app-grid-movie [moviesList]="movies"></app-grid-movie>
     </ng-container>
     <ng-template #elseTemplate>
